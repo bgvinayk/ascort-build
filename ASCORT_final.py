@@ -1044,7 +1044,7 @@ if st.button('Submit'):
 
     Ion_S = 0.01
 
-    db = PhreeqcDatabase("minteq.v4.dat")
+    db = Phreeqc("minteq.v4.dat")
 
     # db = open("C:/Docs/Acku Predictor/Practice/minteq.v4.dat", "r")
 
