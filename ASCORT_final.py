@@ -819,13 +819,17 @@ def corr_R(M_alk_pH):
     
     return x1
 def catanion(pHest, Malk_molar):
+    
+    editor = ChemicalEditor(db)
+    editor.addAqueousPhaseWithElements("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al")
 
 #     solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
 
 
 #     solution = AqueousPhaseWithElements("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al")
 #     solution.setActivityModel(ActivityModelDebyeHuckelPHREEQC())
-    system = ChemicalSystem(db)
+#     system = ChemicalSystem(db)
+    system = ChemicalSystem(editor)
 #     system = ChemicalSystem(db, solution)
 
     specs = EquilibriumProblem(system)
