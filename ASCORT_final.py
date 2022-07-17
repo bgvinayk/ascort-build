@@ -823,7 +823,12 @@ def catanion(pHest, Malk_molar):
 #     solution.setActivityModel(ActivityModelDebyeHuckelPHREEQC())
 #     system = ChemicalSystem(db, solution)
     system = ChemicalSystem(db)
-
+    
+    initial_problem = EquilibriumProblem(system)
+    initial_problem.setTemperature(Tc, "celsius")
+    initial_problem.setPressure(P, "atm")
+    initial_state = equilibrate(initial_problem)
+    
     specs = EquilibriumSpecs(system)
     specs.temperature()
     specs.pressure()
