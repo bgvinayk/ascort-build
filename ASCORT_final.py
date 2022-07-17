@@ -865,7 +865,7 @@ def catanion(pHest, Malk_molar):
     state.add("Cl-"    , Cl_ion["Molar0"]*water_bmass, "mol")
     state.add("NO3-"    , NO3_ion["mg/L0"], "g")
     state.add("F-"    , F_ion["mg/L0"], "g")
-    state = equilibrate(problem)
+    state = equilibrate(state)
 #     conditions = EquilibriumConditions(specs)
 #     conditions.temperature(Tc, "celsius")
 #     conditions.pressure(P, "atm")
