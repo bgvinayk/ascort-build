@@ -990,8 +990,8 @@ if st.button('Submit'):
     Corrosion_level = 'Moderate'
     Corrosion_target = Corrosion_df[Corrosion_level]
 
-    costProducts = pd.read_csv('C:/Docs/Acku Predictor/Practice/Model_Product_Costs.csv')
-    formProducts = pd.read_csv('C:/Docs/Acku Predictor/Practice/Model_Product_Formulations.csv')
+    costProducts = pd.read_csv('Model_Product_Costs.csv')
+    formProducts = pd.read_csv('Model_Product_Formulations.csv')
     # costProducts = pd.read_csv('/app/Model_Product_Costs.csv')
     # formProducts = pd.read_csv('/app/Model_Product_Formulations.csv')
 
@@ -1610,8 +1610,8 @@ if st.button('Submit'):
     ##------INTERNAL CALCULATIONS--------
 
 if 'key' in st.session_state:
-    df = pd.read_csv('C:/Docs/Acku Predictor/Practice/model_results.csv')
-    # df = pd.read_csv('/app/model_results.csv')
+    df = pd.read_csv('model_results.csv')
+    # df = pd.read_csv('model_results.csv')
     # ['pH','Coc','LSI','Calcite Saturation','TCP Saturation','CaSO4 Saturation','Silica Saturation']
     LSI=df['LSI'][0]
     pH=df['pH'][0]
