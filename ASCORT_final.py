@@ -820,18 +820,22 @@ def corr_R(M_alk_pH):
     return x1
 def catanion(pHest, Malk_molar):
 
-    solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
+#     solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
 
 
-    # # solution = AqueousPhaseWithElements("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al")
-    solution.setActivityModel(ActivityModelDebyeHuckelPHREEQC())
-    # system = ChemicalSystem(db)
-    system = ChemicalSystem(db, solution)
+#     # # solution = AqueousPhaseWithElements("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al")
+#     solution.setActivityModel(ActivityModelDebyeHuckelPHREEQC())
+    system = ChemicalSystem(db)
+#     system = ChemicalSystem(db, solution)
 
-    specs = EquilibriumSpecs(system)
-    specs.temperature()
-    specs.pressure()
-    specs.pH()
+    specs = EquilibriumProblem(system)
+    specs.setTemperature(Tc, "celsius")
+    specs.setPressure(P, "bar")
+    specs.add("H2O", water_bmass, "kg")
+#     specs.add("CaCO3", 1, "g")
+#     specs.temperature()
+#     specs.pressure()
+#     specs.pH()
 
     solver = EquilibriumSolver(specs)
 
@@ -1048,7 +1052,7 @@ if st.button('Submit'):
 
     Ion_S = 0.01
 
-    db = PhreeqcDatabase("minteq.v4.dat")
+    db = Phreeqc("minteq.v4.dat")
     # db = Phreeqc("C:/Docs/Acku Predictor/Practice/minteq.v4.dat")
 
     # db = open("C:/Docs/Acku Predictor/Practice/minteq.v4.dat", "r")
