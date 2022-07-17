@@ -874,7 +874,7 @@ def catanion(pHest, Malk_molar):
 #     conditions.pressure(P, "atm")
 #     conditions.pH(pHest)
 #     result = solver.solve(state, conditions)
-    return AqueousState(system)
+    return AqueousProps(system)
 
 def deltax(xe,Ca,PO4,SI):
   xe = float(xe)
