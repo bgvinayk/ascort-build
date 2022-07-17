@@ -818,6 +818,15 @@ def corr_R(M_alk_pH):
       x1 = Corrosion_df[Corrosion_level]
     
 def catanion(pHest, Malk_molar):
+    
+    editor = ChemicalEditor()
+    editor.addAqueousPhaseWithElements("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al")
+
+    system = ChemicalSystem(editor)
+    initial_problem = EquilibriumProblem(system)
+    initial_problem.setTemperature(Tc, "celsius")
+    initial_problem.setPressure(P, "atm")
+    initial_state = equilibrate(initial_problem)
 
 #     solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
 #     solution.setActivityModel(ActivityModelDebyeHuckelPHREEQC())
