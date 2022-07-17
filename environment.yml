@@ -9,10 +9,4 @@ dependencies:
   - pip
   - pip:
     - streamlit==1.11.0
-    - bokeh
-    - matplotlib
-    - IPython
-    - voila
-    - scipy
-    - numpy
-    - pandas
+
