@@ -817,7 +817,6 @@ def corr_R(M_alk_pH):
     else:
       x1 = Corrosion_df[Corrosion_level]
     
-    return x1
 def catanion(pHest, Malk_molar):
 
     solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
@@ -1044,7 +1043,7 @@ if st.button('Submit'):
 
     Ion_S = 0.01
 
-    db = Phreeqc("minteq.v4.dat")
+    db = PhreeqcDatabase("minteq.v4.dat")
 
     # db = open("C:/Docs/Acku Predictor/Practice/minteq.v4.dat", "r")
 
