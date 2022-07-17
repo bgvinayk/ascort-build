@@ -646,7 +646,8 @@ def fcoc(ConcR, pH_control):
   aprops = catanion(pH_target, M_alk_molar)
 #   Ion_S = float(aprops.ionicStrengthStoichiometric())
 #   Ion_S = ChemicalProperty.ionicStrength(system)
-  Ion_S = ionic_strength(aprops.properties()).val
+#   Ion_S = ionic_strength(aprops.properties()).val
+  Ion_S = 0.01
 
   for ai in Ion_bal_ions: ai["Gamma"] = np.exp(-A*ai["Z"]**2*(Ion_S**0.5/(1+Ion_S**0.5)-0.3*Ion_S))
   
