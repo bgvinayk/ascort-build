@@ -1,10 +1,11 @@
 name: env-name
 channels:
   - conda-forge
+  - defaults
 dependencies:
-  - python=3.9.12
+  - python
   - brotlipy=0.7.0
-  - reaktoro=2.0.0rc22
+  - reaktoro
   - pip
   - pip:
     - streamlit==1.11.0
