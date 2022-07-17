@@ -644,7 +644,9 @@ def fcoc(ConcR, pH_control):
   #print("Base Requirement: ", Base_ppm, " ppm")
   global SI_TCP, SI_CaCO3, SI_Arag, SI_Gyp, SI_Anh, LSI, RSI, SI_BaSO4, SI_SrCO3, SI_SiO2, SI_MgSi, SI_CaF2, SI_FeCO3, SI_FeOH3, SI_FePO4, SI_Arag, SI_MgOH, SI_MgCO3, SI_MgHPO4, SI_ZnCO3, SI_ZnOH, SI_ZnO, SI_ZnPO4, SI_AlOH
   aprops = catanion(pH_target, M_alk_molar)
-  Ion_S = float(aprops.ionicStrengthStoichiometric())
+#   Ion_S = float(aprops.ionicStrengthStoichiometric())
+#   Ion_S = ChemicalProperty.ionicStrength(system)
+  Ion_S = ionic_strength(aprops.properties()).val
 
   for ai in Ion_bal_ions: ai["Gamma"] = np.exp(-A*ai["Z"]**2*(Ion_S**0.5/(1+Ion_S**0.5)-0.3*Ion_S))
   
