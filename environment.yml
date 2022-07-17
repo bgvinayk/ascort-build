@@ -4,7 +4,7 @@ channels:
 dependencies:
   - python=3.9.12
   - brotlipy=0.7.0
-  - reaktoro
+  - reaktoro=2.*
   - pip
   - pip:
     - streamlit==1.11.0
