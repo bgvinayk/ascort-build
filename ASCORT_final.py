@@ -820,7 +820,8 @@ def corr_R(M_alk_pH):
     return x1
 def catanion(pHest, Malk_molar):
     
-    editor = ChemicalEditor(db)
+#     db = Database("supcrt98.xml")
+    editor = ChemicalEditor()
     editor.addAqueousPhaseWithElements("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al")
 
 #     solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
