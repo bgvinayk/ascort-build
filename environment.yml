@@ -1,7 +1,6 @@
 name: env-name
 channels:
   - conda-forge
-  - defaults
 dependencies:
   - python
   - brotlipy=0.7.0
