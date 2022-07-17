@@ -836,7 +836,7 @@ def catanion(pHest, Malk_molar):
     state = EquilibriumInverseProblem(system)
     state.setTemperature(Tc, "celsius")
     state.setPressure(P, "bar")
-    state.pH(7.2, "HCl", "NaOH")
+    state.pH(pHest, "HCl", "NaOH")
     state.add("H2O", water_bmass, "kg")
 #     specs.add("CaCO3", 1, "g")
 #     specs.temperature()
@@ -871,6 +871,7 @@ def catanion(pHest, Malk_molar):
 #     conditions.pressure(P, "atm")
 #     conditions.pH(pHest)
 #     result = solver.solve(state, conditions)
+    print(state.properties())
     return AqueousProps(state)
 
 def deltax(xe,Ca,PO4,SI):
