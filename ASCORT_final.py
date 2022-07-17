@@ -819,9 +819,10 @@ def corr_R(M_alk_pH):
     
 def catanion(pHest, Malk_molar):
 
-    solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
-    solution.setActivityModel(ActivityModelDebyeHuckelPHREEQC())
-    system = ChemicalSystem(db, solution)
+#     solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
+#     solution.setActivityModel(ActivityModelDebyeHuckelPHREEQC())
+#     system = ChemicalSystem(db, solution)
+    system = ChemicalSystem(db)
 
     specs = EquilibriumSpecs(system)
     specs.temperature()
