@@ -817,55 +817,50 @@ def corr_R(M_alk_pH):
     else:
       x1 = Corrosion_df[Corrosion_level]
     
+    return x1
 def catanion(pHest, Malk_molar):
-    
-#     editor = ChemicalEditor()
-#     editor.addAqueousPhaseWithElements("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al")
 
-#     system = ChemicalSystem(editor)
-#     initial_problem = EquilibriumProblem(system)
-#     initial_problem.setTemperature(Tc, "celsius")
-#     initial_problem.setPressure(P, "atm")
-#     initial_state = equilibrate(initial_problem)
+    solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
 
-#     solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
-#     solution.setActivityModel(ActivityModelDebyeHuckelPHREEQC())
-#     system = ChemicalSystem(db, solution)
-    system = ChemicalSystem(db)
-    
-#     initial_problem = EquilibriumProblem(system)
-#     initial_problem.setTemperature(Tc, "celsius")
-#     initial_problem.setPressure(P, "atm")
-#     initial_state = equilibrate(initial_problem)
-    
-#     specs = EquilibriumSpecs(system)
-    specs = EquilibriumProblem(system)
-    specs.setTemperature(Tc, "celsius")
-    specs.setPressure(P, "atm")
-    specs.add("H2O"    , water_bmass, "kg")
-    specs.add("Na+"    , Na_ion["Molar0"]*water_bmass, "mol")
-    specs.add("K+"    , K_ion["Molar0"]*water_bmass, "mol")
-    specs.add("Ca+2"    , Ca_ion["mg/L0"], "g")
-    specs.add("Mg+2"    , Mg_ion["mg/L0"], "g")
-    specs.add("Ba+2"    , Ba_ion["mg/L0"], "g")
-    specs.add("Sr+2"    , Sr_ion["mg/L0"], "g")
-    specs.add("Fe+2"    , Fe_ion["mg/L0"], "g")
-    specs.add("Zn+2"    , Zn_ion["mg/L0"], "g")
-    specs.add("Al+3"    , Al_ion["mg/L0"], "g")
-    specs.add("CO3-2"    ,  Malk_molar*water_bmass, "mol")
-    specs.add("H4SiO4"    ,  SiO2_ion["Molar0"]*water_bmass, "mol")
-    specs.add("SO4-2"   , SO4_ion["Molar0"]*water_bmass, "mol")
-    specs.add("PO4-3"   , PO4_ion["mg/L0"], "g")
-    specs.add("Cl-"    , Cl_ion["Molar0"]*water_bmass, "mol")
-    specs.add("NO3-"    , NO3_ion["mg/L0"], "g")
-    specs.add("F-"    , F_ion["mg/L0"], "g")
-    
-    state = equilibrate(specs)
-#     conditions = EquilibriumConditions(specs)
-#     conditions.temperature(Tc, "celsius")
-#     conditions.pressure(P, "atm")
-#     conditions.pH(pHest)
-#     result = solver.solve(state, conditions)
+
+    # # solution = AqueousPhaseWithElements("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al")
+    solution.setActivityModel(ActivityModelDebyeHuckelPHREEQC())
+    # system = ChemicalSystem(db)
+    system = ChemicalSystem(db, solution)
+
+    specs = EquilibriumSpecs(system)
+    specs.temperature()
+    specs.pressure()
+    specs.pH()
+
+    solver = EquilibriumSolver(specs)
+
+    state = ChemicalState(system)
+    state.pressure(P, "atm")
+    state.temperature(Tc, "celsius")
+    state.set("H2O"    , water_bmass, "kg")
+    state.set("Na+"    , Na_ion["Molar0"]*water_bmass, "mol")
+    state.set("K+"    , K_ion["Molar0"]*water_bmass, "mol")
+    state.set("Ca+2"    , Ca_ion["mg/L0"], "g")
+    state.set("Mg+2"    , Mg_ion["mg/L0"], "g")
+    state.set("Ba+2"    , Ba_ion["mg/L0"], "g")
+    state.set("Sr+2"    , Sr_ion["mg/L0"], "g")
+    state.set("Fe+2"    , Fe_ion["mg/L0"], "g")
+    state.set("Zn+2"    , Zn_ion["mg/L0"], "g")
+    state.set("Al+3"    , Al_ion["mg/L0"], "g")
+    state.set("CO3-2"    ,  Malk_molar*water_bmass, "mol")
+    state.set("H4SiO4"    ,  SiO2_ion["Molar0"]*water_bmass, "mol")
+    state.set("SO4-2"   , SO4_ion["Molar0"]*water_bmass, "mol")
+    state.set("PO4-3"   , PO4_ion["mg/L0"], "g")
+    state.set("Cl-"    , Cl_ion["Molar0"]*water_bmass, "mol")
+    state.set("NO3-"    , NO3_ion["mg/L0"], "g")
+    state.set("F-"    , F_ion["mg/L0"], "g")
+
+    conditions = EquilibriumConditions(specs)
+    conditions.temperature(Tc, "celsius")
+    conditions.pressure(P, "atm")
+    conditions.pH(pHest)
+    result = solver.solve(state, conditions)
     return AqueousProps(state)
 
 def deltax(xe,Ca,PO4,SI):
@@ -999,8 +994,8 @@ if st.button('Submit'):
     Corrosion_level = 'Moderate'
     Corrosion_target = Corrosion_df[Corrosion_level]
 
-    costProducts = pd.read_csv('Model_Product_Costs.csv')
-    formProducts = pd.read_csv('Model_Product_Formulations.csv')
+    costProducts = pd.read_csv('C:/Docs/Acku Predictor/Practice/Model_Product_Costs.csv')
+    formProducts = pd.read_csv('C:/Docs/Acku Predictor/Practice/Model_Product_Formulations.csv')
     # costProducts = pd.read_csv('/app/Model_Product_Costs.csv')
     # formProducts = pd.read_csv('/app/Model_Product_Formulations.csv')
 
@@ -1053,7 +1048,8 @@ if st.button('Submit'):
 
     Ion_S = 0.01
 
-    db = Phreeqc("minteq.v4.dat")
+    db = PhreeqcDatabase("minteq.v4.dat")
+    # db = Phreeqc("C:/Docs/Acku Predictor/Practice/minteq.v4.dat")
 
     # db = open("C:/Docs/Acku Predictor/Practice/minteq.v4.dat", "r")
 
@@ -1619,8 +1615,8 @@ if st.button('Submit'):
     ##------INTERNAL CALCULATIONS--------
 
 if 'key' in st.session_state:
-    df = pd.read_csv('model_results.csv')
-    # df = pd.read_csv('model_results.csv')
+    df = pd.read_csv('C:/Docs/Acku Predictor/Practice/model_results.csv')
+    # df = pd.read_csv('/app/model_results.csv')
     # ['pH','Coc','LSI','Calcite Saturation','TCP Saturation','CaSO4 Saturation','Silica Saturation']
     LSI=df['LSI'][0]
     pH=df['pH'][0]
