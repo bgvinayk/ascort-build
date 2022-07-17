@@ -823,10 +823,10 @@ def catanion(pHest, Malk_molar):
 #     solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
 
 
-    solution = AqueousPhaseWithElements("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al")
-    solution.setActivityModel(ActivityModelDebyeHuckelPHREEQC())
-#     system = ChemicalSystem(db)
-    system = ChemicalSystem(db, solution)
+#     solution = AqueousPhaseWithElements("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al")
+#     solution.setActivityModel(ActivityModelDebyeHuckelPHREEQC())
+    system = ChemicalSystem(db)
+#     system = ChemicalSystem(db, solution)
 
     specs = EquilibriumProblem(system)
     specs.setTemperature(Tc, "celsius")
