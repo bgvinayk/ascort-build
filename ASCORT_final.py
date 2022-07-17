@@ -842,7 +842,7 @@ def catanion(pHest, Malk_molar):
 #     specs.pressure()
 #     specs.pH()
 
-    solver = EquilibriumSolver(specs)
+#     solver = EquilibriumSolver(specs)
 
     state = ChemicalState(system)
     state.pressure(P, "atm")
