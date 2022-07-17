@@ -828,9 +828,9 @@ def catanion(pHest, Malk_molar):
 #     initial_problem.setPressure(P, "atm")
 #     initial_state = equilibrate(initial_problem)
 
-    solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
-    solution.setActivityModel(ActivityModelDebyeHuckelPHREEQC())
-    system = ChemicalSystem(db, solution)
+#     solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
+#     solution.setActivityModel(ActivityModelDebyeHuckelPHREEQC())
+#     system = ChemicalSystem(db, solution)
     system = ChemicalSystem(db)
     
 #     initial_problem = EquilibriumProblem(system)
@@ -838,7 +838,8 @@ def catanion(pHest, Malk_molar):
 #     initial_problem.setPressure(P, "atm")
 #     initial_state = equilibrate(initial_problem)
     
-    specs = EquilibriumSpecs(system)
+#     specs = EquilibriumSpecs(system)
+    specs = EquilibriumProblem(system)
     specs.temperature()
     specs.pressure()
     specs.pH()
