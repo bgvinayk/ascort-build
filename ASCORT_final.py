@@ -827,7 +827,7 @@ def catanion(pHest, Malk_molar):
     initial_problem = EquilibriumProblem(system)
     initial_problem.setTemperature(Tc, "celsius")
     initial_problem.setPressure(P, "atm")
-    initial_state = equilibrate(initial_problem)
+#     initial_state = equilibrate(initial_problem)
     
     specs = EquilibriumSpecs(system)
     specs.temperature()
