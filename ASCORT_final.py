@@ -833,7 +833,7 @@ def catanion(pHest, Malk_molar):
     system = ChemicalSystem(editor)
 #     system = ChemicalSystem(db, solution)
 
-    state = EquilibriumProblem(system)
+    state = EquilibriumInverseProblem(system)
     state.setTemperature(Tc, "celsius")
     state.setPressure(P, "bar")
     state.pH(7.2, "HCl", "NaOH")
