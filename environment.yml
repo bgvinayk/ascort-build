@@ -1,0 +1,17 @@
+name: env-name
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9.12
+  - brotlipy=0.7.0
+  - reaktoro=1.*
+  - pip
+  - pip:
+    - streamlit==1.11.0
+    - bokeh
+    - matplotlib
+    - IPython
+    - voila
+    - scipy
+    - numpy
+    - pandas
