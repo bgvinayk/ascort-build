@@ -11,7 +11,6 @@ from scipy.optimize import fsolve
 def corr(Sc_1,Sc_3,pH,mu_flow,evap_rate,a_op,a_oph):
     a_corr='No Product'
     Avg_corr='_'
-    Avg_dose_corr='_'
     if Sc_1==0:
         a=st.radio('Is heavy metal allowed? (Zn/Mo)',['Yes','No'])
         if a=='No':
@@ -822,7 +821,8 @@ def catanion(pHest, Malk_molar):
     
 #     db = Database("supcrt98.xml")
     editor = ChemicalEditor()
-    editor.addAqueousPhaseWithElements("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al")
+    editor.addAqueousPhaseWithElements("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al")\
+    .setChemicalModelDebyeHuckel()
 
 #     solution = AqueousPhase(speciate("H O Ca Mg Na K Zn Fe C Si P S Cl F N Ba Sr Al"))
 
@@ -871,8 +871,7 @@ def catanion(pHest, Malk_molar):
 #     conditions.pressure(P, "atm")
 #     conditions.pH(pHest)
 #     result = solver.solve(state, conditions)
-    print(state.properties())
-    return AqueousProps(state)
+    return state
 
 def deltax(xe,Ca,PO4,SI):
   xe = float(xe)
